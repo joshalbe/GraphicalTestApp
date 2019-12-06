@@ -15,8 +15,10 @@ namespace GraphicalTestApp
 
         public bool Started { get; private set; } = false;
 
-        public Actor Parent { get; private set; } = null;
+        public Actor _parent { get; private set; } = null;
         private List<Actor> _children = new List<Actor>();
+        private List<Actor> _additions = new List<Actor>();
+        private List<Actor> _removals = new List<Actor>();
 
         private Matrix3 _localTransform = new Matrix3();
         private Matrix3 _globalTransform = new Matrix3();
@@ -24,41 +26,61 @@ namespace GraphicalTestApp
         public float X
         {
             //## Implement the relative X coordinate ##//
-            get { return 0; }
-            set { }
+            get
+            {
+                return _localTransform.m13;
+            }
+            set
+            {
+                _localTransform.SetTranslation(value, Y, 1);
+            }
         }
         public float XAbsolute
         {
             //## Implement the absolute X coordinate ##//
-            get { return 0; }
+            get
+            {
+                return _globalTransform.m13;
+            }
         }
         public float Y
         {
             //## Implement the relative Y coordinate ##//
-            get { return 0; }
-            set { }
+            get
+            {
+                return _localTransform.m23;
+            }
+            set
+            {
+                _localTransform.SetTranslation(X, value, 1);
+            }
         }
         public float YAbsolute
         {
             //## Implement the absolute Y coordinate ##//
-            get { return 0; }
+            get
+            {
+                return _globalTransform.m23;
+            }
         }
 
         public float GetRotation()
         {
             //## Implement getting the rotation of _localTransform ##//
-            return 0;
+            return (float)Math.Atan2(_globalTransform.m21, _globalTransform.m11);
         }
 
         public void Rotate(float radians)
         {
             //## Implement rotating _localTransform ##//
+            _localTransform.RotateZ(radians);
+            UpdateTransform();
         }
 
         public float GetScale()
         {
             //## Implement getting the scale of _localTransform ##//
-            return 0;
+            return 1;
         }
 
         public void Scale(float scale)
@@ -69,16 +91,32 @@ namespace GraphicalTestApp
         public void AddChild(Actor child)
         {
             //## Implement AddChild(Actor) ##//
+            child._parent = this;
+            _additions.Add(child);
         }
 
         public void RemoveChild(Actor child)
         {
             //## Implement RemoveChild(Actor) ##//
+            _removals.Add(child);
         }
 
         public void UpdateTransform()
         {
             //## Implment UpdateTransform() ##//
+            if (_parent != null)
+            {
+                _globalTransform = _parent._globalTransform * _localTransform;
+            }
+            else
+            {
+                _globalTransform = _localTransform;
+            }
+
+            foreach (Entity child in _children)
+            {
+                child.UpdateTransform();
+            }
         }
 
         //Call the OnStart events of the Actor and its children
@@ -105,6 +143,18 @@ namespace GraphicalTestApp
 
             //Call this Actor's OnUpdate events
             OnUpdate?.Invoke(deltaTime);
+
+            foreach (Actor a in _additions)
+            {
+                _children.Add(a);
+            }
+            _additions.Clear();
+
+            foreach (Actor r in _removals)
+            {
+                _children.Remove(r);
+            }
+            _removals.Clear();
 
             //Update all of this Actor's children
             foreach (Actor child in _children)

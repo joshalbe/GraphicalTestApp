@@ -16,6 +16,7 @@ namespace GraphicalTestApp
             game.Root = root;
 
             //## Set up game here ##//
+            Player player = new Player(640, 380);
 
             game.Run();
         }
