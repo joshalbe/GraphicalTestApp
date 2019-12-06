@@ -8,7 +8,7 @@ namespace GraphicalTestApp
 {
     class Turret : Entity
     {
-        private Sprite _sprite = new Sprite("png/default_size/tankDark_barrel2_outline");
+        private Sprite _sprite = new Sprite("Images/tankDark_barrel2_outline.png");
 
 
         public Turret(float x, float y) : base(x,y)

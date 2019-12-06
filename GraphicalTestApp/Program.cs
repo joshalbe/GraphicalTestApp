@@ -18,6 +18,8 @@ namespace GraphicalTestApp
             //## Set up game here ##//
             Player player = new Player(640, 380);
 
+            root.AddChild(player);
+
             game.Run();
         }
     }

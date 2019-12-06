@@ -91,6 +91,11 @@ namespace GraphicalTestApp
         public void AddChild(Actor child)
         {
             //## Implement AddChild(Actor) ##//
+            if (child._parent != null)
+            {
+                return;
+            }
+
             child._parent = this;
             _additions.Add(child);
         }
@@ -113,7 +118,7 @@ namespace GraphicalTestApp
                 _globalTransform = _localTransform;
             }
 
-            foreach (Entity child in _children)
+            foreach (Actor child in _children)
             {
                 child.UpdateTransform();
             }

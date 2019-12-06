@@ -8,7 +8,7 @@ namespace GraphicalTestApp
 {
     class Bullet : Entity
     {
-        private Sprite _sprite = new Sprite("png/default_size/bulletdark1_outline");
+        private Sprite _sprite = new Sprite("Images/bulletDark1_outline.png");
         AABB Hitbox;
 
         public Bullet(float x, float y) : base(x, y)
