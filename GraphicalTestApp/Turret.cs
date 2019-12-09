@@ -13,7 +13,7 @@ namespace GraphicalTestApp
 
         public Turret(float x, float y) : base(x,y)
         {
-
+            AddChild(_sprite);
         }
 
         public void Fire()
