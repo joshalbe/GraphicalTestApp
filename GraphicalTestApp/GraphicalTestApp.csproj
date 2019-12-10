@@ -64,10 +64,12 @@
   <ItemGroup>
     <Compile Include="Actor.cs" />
     <Compile Include="Bullet.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="AABB.cs" />
     <Compile Include="Input.cs" />
+    <Compile Include="LevelController.cs" />
     <Compile Include="Matrix3.cs" />
     <Compile Include="Matrix4.cs" />
     <Compile Include="Player.cs" />

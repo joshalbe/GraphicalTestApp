@@ -104,6 +104,10 @@ namespace GraphicalTestApp
         {
             //## Implement RemoveChild(Actor) ##//
             _removals.Add(child);
+            if (child is Enemy)
+            {
+                
+            }
         }
 
         public void UpdateTransform()

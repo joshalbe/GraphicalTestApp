@@ -48,7 +48,7 @@ namespace GraphicalTestApp
 
             if (Right >= other.Left && Bottom >= other.Top && Left <= other.Right && Top <= other.Bottom)
             {
-                color = Raylib.Color.MAGENTA;
+                color = Raylib.Color.BLUE;
                 return true;
             }
 
@@ -65,7 +65,7 @@ namespace GraphicalTestApp
         public override void Draw()
         {
             Raylib.Rectangle rec = new Raylib.Rectangle(Left, Top, Width, Height);
-            Raylib.Raylib.DrawRectangleLinesEx(rec, 1, Raylib.Color.RED);
+            Raylib.Raylib.DrawRectangleLinesEx(rec, 1, color);
             base.Draw();
         }
     }

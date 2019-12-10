@@ -26,4 +26,25 @@ namespace GraphicalTestApp
             _parent._parent.AddChild(bulletOne);
         }
     }
+
+    class EnemyTurret : Entity
+    {
+        private Sprite _sprite = new Sprite("Images/specialBarrel7_outline.png");
+
+
+        public EnemyTurret(float x, float y) : base(x, y)
+        {
+            AddChild(_sprite);
+        }
+
+        public void Fire()
+        {
+            EnemyBullet bulletOne = new EnemyBullet(XAbsolute, YAbsolute);
+            bulletOne.Rotate(GetRotation());
+            bulletOne.XVelocity = (float)Math.Cos(GetRotation() - Math.PI * .5f) * 400;
+            bulletOne.YVelocity = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 400;
+
+            _parent._parent.AddChild(bulletOne);
+        }
+    }
 }

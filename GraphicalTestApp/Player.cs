@@ -24,6 +24,8 @@ namespace GraphicalTestApp
 
         public Player(float x, float y) : base(x,y)
         {
+            Instance = this;
+
             X = x;
             Y = y;
 
@@ -77,7 +79,7 @@ namespace GraphicalTestApp
             if (Input.IsKeyDown(32))
             {
                 //FIYAAAAAAAAAAAAAAAAAAAAAh
-                if (_timer.ElapsedMilliseconds > 1200)
+                if (_timer.ElapsedMilliseconds > 100)
                 {
                     _turret.Fire();
                     _timer.Restart();
@@ -143,6 +145,15 @@ namespace GraphicalTestApp
                     YVelocity = -YVelocity;
                 }
             }
+            
+            foreach (Enemy e in Enemy.Enemies1)
+            {
+                if (_hitbox.DetectCollision(e._hitbox))
+                {
+                    XVelocity = -XVelocity;
+                    YVelocity = -YVelocity;
+                }
+            }
         }
         
         private void SpeedCheck(float deltatime)
@@ -162,6 +173,15 @@ namespace GraphicalTestApp
             if (YVelocity < -SpeedCap)
             {
                 YVelocity = -SpeedCap;
+            }
+        }
+
+        public void Damage(int damageTaken)
+        {
+            _hp -= damageTaken;
+            if (_hp <= 0)
+            {
+                _parent.RemoveChild(this);
             }
         }
     }

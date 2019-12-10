@@ -12,15 +12,14 @@ namespace GraphicalTestApp
         {
             Game game = new Game(1280, 760, "Graphical Test Application");
 
+            
             Actor root = new Actor();
             game.Root = root;
 
-            //## Set up game here ##//
-            Player player = new Player(640, 380);
-            WallGeneration _walls = new WallGeneration();
+            LevelController levelController = new LevelController(root);
 
-            root.AddChild(player);
-            root.AddChild(_walls);
+
+            root.AddChild(levelController);
 
             game.Run();
         }
