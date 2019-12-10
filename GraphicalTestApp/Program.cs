@@ -17,8 +17,10 @@ namespace GraphicalTestApp
 
             //## Set up game here ##//
             Player player = new Player(640, 380);
+            WallGeneration _walls = new WallGeneration();
 
             root.AddChild(player);
+            root.AddChild(_walls);
 
             game.Run();
         }

@@ -23,7 +23,28 @@ namespace GraphicalTestApp
             AddChild(hitbox);
             AddChild(_sprite);
 
+            OnUpdate += BulletCollide;
+        }
+
+        private void BulletCollide(float deltatime)
+        {
+            foreach (VerticalWall v in WallGeneration.VerWallList)
+            {
+                if (Hitbox.DetectCollision(v._hitbox))
+                {
+                    
+                    _parent.RemoveChild(this);
+                }
+            }
             
+            foreach (HorizontalWall h in WallGeneration.HorWallList)
+            {
+                if (Hitbox.DetectCollision(h._hitbox))
+                {
+                    
+                    _parent.RemoveChild(this);
+                }
+            }
         }
     }
 }

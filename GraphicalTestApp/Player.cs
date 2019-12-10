@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace GraphicalTestApp
 {
@@ -16,7 +17,10 @@ namespace GraphicalTestApp
         public AABB _hitbox;
         public static Player Instance;
 
-        float SpeedCap = 25;
+        private Stopwatch _timer = new Stopwatch();
+
+        float SpeedCap = 50;
+        //25
 
         public Player(float x, float y) : base(x,y)
         {
@@ -33,6 +37,8 @@ namespace GraphicalTestApp
             AddChild(_sprite);
             AddChild(_hitbox);
             AddChild(_turret);
+
+            _timer.Start();
 
             OnUpdate += Movement;
             OnUpdate += BounceCheck;
@@ -71,6 +77,11 @@ namespace GraphicalTestApp
             if (Input.IsKeyDown(32))
             {
                 //FIYAAAAAAAAAAAAAAAAAAAAAh
+                if (_timer.ElapsedMilliseconds > 1200)
+                {
+                    _turret.Fire();
+                    _timer.Restart();
+                }
             }
             else if (!Input.IsKeyDown(87) && !Input.IsKeyDown(83))
             {
@@ -116,6 +127,21 @@ namespace GraphicalTestApp
             {
                 YVelocity = -YVelocity/2;
                 //Y = 6;
+            }
+            foreach (VerticalWall v in WallGeneration.VerWallList)
+            {
+                if (_hitbox.DetectCollision(v._hitbox))
+                {
+                    XVelocity = -XVelocity;
+                }
+            }
+
+            foreach (HorizontalWall h in WallGeneration.HorWallList)
+            {
+                if (_hitbox.DetectCollision(h._hitbox))
+                {
+                    YVelocity = -YVelocity;
+                }
             }
         }
         

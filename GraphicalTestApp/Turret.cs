@@ -20,8 +20,8 @@ namespace GraphicalTestApp
         {
             Bullet bulletOne = new Bullet(XAbsolute, YAbsolute);
             bulletOne.Rotate(GetRotation());
-            bulletOne.XVelocity = (float)Math.Cos(GetRotation() - Math.PI * .5f) * 1000;
-            bulletOne.YVelocity = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 1000;
+            bulletOne.XVelocity = (float)Math.Cos(GetRotation() - Math.PI * .5f) * 400;
+            bulletOne.YVelocity = (float)Math.Sin(GetRotation() - Math.PI * .5f) * 400;
 
             _parent._parent.AddChild(bulletOne);
         }
