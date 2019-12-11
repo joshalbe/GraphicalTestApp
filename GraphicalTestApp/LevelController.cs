@@ -15,7 +15,7 @@ namespace GraphicalTestApp
         Actor level4 = new Actor();
         Actor levelBoss = new Actor();
 
-        float currentLevel = 1;
+        public float currentLevel = 1;
 
         public LevelController(Actor root)
         {
@@ -61,21 +61,25 @@ namespace GraphicalTestApp
             {
                 Root.RemoveChild(level4);
                 Root.AddChild(levelBoss);
+                currentLevel++;
             }
             else if (Enemy.Enemies3.Count == 0)
             {
                 Root.RemoveChild(level3);
                 Root.AddChild(level4);
+                currentLevel++;
             }
             else if (Enemy.Enemies2.Count == 0)
             {
                 Root.RemoveChild(level2);
                 Root.AddChild(level3);
+                currentLevel++;
             }
             else if (Enemy.Enemies1.Count == 0)
             {
                 Root.RemoveChild(level1);
                 Root.AddChild(level2);
+                currentLevel++;
             }
         }
     }

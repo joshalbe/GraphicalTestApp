@@ -28,11 +28,12 @@ namespace GraphicalTestApp
             _hitbox.Y = YAbsolute;
 
             OnUpdate += BulletCollide;
+            OnUpdate += DeletBullet;
         }
 
         private void BulletCollide(float deltatime)
         {
-            foreach (VerticalWall v in WallGeneration.VerWallList)
+            foreach (VerticalWall v in WallGeneration.VerWallList1)
             {
                 if (_hitbox.DetectCollision(v._hitbox))
                 {
@@ -41,7 +42,7 @@ namespace GraphicalTestApp
                 }
             }
             
-            foreach (HorizontalWall h in WallGeneration.HorWallList)
+            foreach (HorizontalWall h in WallGeneration.HorWallList1)
             {
                 if (_hitbox.DetectCollision(h._hitbox))
                 {
@@ -60,21 +61,21 @@ namespace GraphicalTestApp
             }
         }
 
-        public void DeletBullet()
+        public void DeletBullet(float deltatime)
         {
-            if (_hitbox.Right >= 1280)
+            if (_hitbox.Right >= 1300)
             {
                 _parent.RemoveChild(this);
             }
-            else if (_hitbox.Left <= 0)
+            else if (_hitbox.Left <= -100)
             {
                 _parent.RemoveChild(this);
             }
-            if (_hitbox.Bottom >= 760)
+            if (_hitbox.Bottom >= 800)
             {
                 _parent.RemoveChild(this);
             }
-            else if (_hitbox.Top <= 0)
+            else if (_hitbox.Top <= -100)
             {
                 _parent.RemoveChild(this);
             }
@@ -103,11 +104,12 @@ namespace GraphicalTestApp
             _hitbox.Y = YAbsolute;
 
             OnUpdate += BulletCollide;
+            OnUpdate += DeletBullet;
         }
 
         private void BulletCollide(float deltatime)
         {
-            foreach (VerticalWall v in WallGeneration.VerWallList)
+            foreach (VerticalWall v in WallGeneration.VerWallList1)
             {
                 if (_hitbox.DetectCollision(v._hitbox))
                 {
@@ -116,7 +118,7 @@ namespace GraphicalTestApp
                 }
             }
 
-            foreach (HorizontalWall h in WallGeneration.HorWallList)
+            foreach (HorizontalWall h in WallGeneration.HorWallList1)
             {
                 if (_hitbox.DetectCollision(h._hitbox))
                 {
@@ -131,6 +133,26 @@ namespace GraphicalTestApp
                 _parent.RemoveChild(this);
             }
 
+        }
+
+        public void DeletBullet(float deltatime)
+        {
+            if (_hitbox.Right >= 1300)
+            {
+                _parent.RemoveChild(this);
+            }
+            else if (_hitbox.Left <= -100)
+            {
+                _parent.RemoveChild(this);
+            }
+            if (_hitbox.Bottom >= 800)
+            {
+                _parent.RemoveChild(this);
+            }
+            else if (_hitbox.Top <= -100)
+            {
+                _parent.RemoveChild(this);
+            }
         }
     }
 }

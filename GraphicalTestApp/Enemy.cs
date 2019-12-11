@@ -72,6 +72,8 @@ namespace GraphicalTestApp
             if (_hp <= 0)
             {
                 //Number++
+                X = 9000;
+                Y = 9000;
                 _parent.RemoveChild(this);
                 
             }

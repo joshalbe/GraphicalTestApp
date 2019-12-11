@@ -21,7 +21,7 @@ namespace GraphicalTestApp
             _sprite.X = XAbsolute - 53;
             _sprite.Y = YAbsolute - 35;
 
-            WallGeneration.HorWallList.Add(this);
+            WallGeneration.HorWallList1.Add(this);
         }
     }
 
@@ -43,7 +43,7 @@ namespace GraphicalTestApp
             _sprite.X = XAbsolute - 35;
             _sprite.Y = YAbsolute - 53;
 
-            WallGeneration.VerWallList.Add(this);
+            WallGeneration.VerWallList1.Add(this);
         }
     }
 }

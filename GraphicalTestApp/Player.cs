@@ -19,8 +19,8 @@ namespace GraphicalTestApp
 
         private Stopwatch _timer = new Stopwatch();
 
-        float SpeedCap = 50;
-        //25
+        float SpeedCap = 25;
+        //25 - 50
 
         public Player(float x, float y) : base(x,y)
         {
@@ -79,7 +79,7 @@ namespace GraphicalTestApp
             if (Input.IsKeyDown(32))
             {
                 //FIYAAAAAAAAAAAAAAAAAAAAAh
-                if (_timer.ElapsedMilliseconds > 100)
+                if (_timer.ElapsedMilliseconds > 500) //100 - 1000
                 {
                     _turret.Fire();
                     _timer.Restart();
@@ -130,7 +130,7 @@ namespace GraphicalTestApp
                 YVelocity = -YVelocity/2;
                 //Y = 6;
             }
-            foreach (VerticalWall v in WallGeneration.VerWallList)
+            foreach (VerticalWall v in WallGeneration.VerWallList1)
             {
                 if (_hitbox.DetectCollision(v._hitbox))
                 {
@@ -138,7 +138,7 @@ namespace GraphicalTestApp
                 }
             }
 
-            foreach (HorizontalWall h in WallGeneration.HorWallList)
+            foreach (HorizontalWall h in WallGeneration.HorWallList1)
             {
                 if (_hitbox.DetectCollision(h._hitbox))
                 {
